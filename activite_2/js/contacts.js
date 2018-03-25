@@ -13,16 +13,48 @@ function initChoix() {
     return choixUtilisateur;
 }
 
-console.log("Bienvenue dans les gestionnaire des contacts !");
+var Contact = {
+    // Initialise le contact
+    init: function (nom, prenom) {
+        this.nom = nom;
+        this.prenom = prenom;
+    },
+    // Renvoie les données du contact
+    afficherContact: function () {
+        return "Nom : " + this.nom + ", prénom : " + this.prenom;
+    },
+};
+
+var contact1 = Object.create(Contact);
+contact1.init("Lévisse", "Carole");
+
+var contact2 = Object.create(Contact);
+contact2.init("Nelsonne", "Mélodie");
+
+var contacts = [];
+contacts.push(contact1);
+contacts.push(contact2);
+
+// Gestion d'interaction avec l'utilisateur
+console.log("Bienvenue dans le gestionnaire des contacts !");
 var choixUtilisateur = initChoix();
 while (choixUtilisateur !== 0) {
-    if (choixUtilisateur === 1) {
-        console.log("Liste de contacts \n \n");
-    } else if (choixUtilisateur === 2) {
-        console.log ("Ajout de contact \n \n");
-    } else {
-        console.log("Entrée erronnée, veuillez entrer une option valable : \n \n");
+    if (choixUtilisateur === 1) { // affichage de tous les contacts enregistrés dans le tableau
+        console.log("Voici la liste de tous vos contacts :");
+        for (var i = 0; i < contacts.length; i++) {
+            console.log(contacts[i].afficherContact());
+        }
+    } else if (choixUtilisateur === 2) { // Ajout de nouvelles données dans le tableau
+        var nomNouveauContact = prompt("Entrez le nom du nouveau contact :");
+        var prenomNouveauContact = prompt("Entrez le prénom du nouveau contact :");
+        var nouveauContact = Object.create(Contact);
+        nouveauContact.init(nomNouveauContact, prenomNouveauContact);
+        contacts.push(nouveauContact);
+        console.log("Le nouveau contact a été ajouté");
+    } else { // Gestion d'entrée non valide
+        console.log("Entrée erronnée. Veuillez entrer une option valable : \n \n");
     }
+    console.log("\n");
     var choixUtilisateur = initChoix();
 }
 console.log("\n Au revoir !");
