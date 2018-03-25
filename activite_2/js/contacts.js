@@ -13,6 +13,15 @@ function initChoix() {
     return choixUtilisateur;
 }
 
+function ajouterContact() {
+    var nomNouveauContact = prompt("Entrez le nom du nouveau contact :");
+    var prenomNouveauContact = prompt("Entrez le prénom du nouveau contact :");
+    var nouveauContact = Object.create(Contact);
+    nouveauContact.init(nomNouveauContact, prenomNouveauContact);
+    contacts.push(nouveauContact);
+    console.log("Le nouveau contact a été ajouté");
+}
+
 var Contact = {
     // Initialise le contact
     init: function (nom, prenom) {
@@ -45,14 +54,9 @@ while (choixUtilisateur !== 0) {
             console.log(contacts[i].afficherContact());
         }
     } else if (choixUtilisateur === 2) { // Ajout de nouvelles données dans le tableau
-        var nomNouveauContact = prompt("Entrez le nom du nouveau contact :");
-        var prenomNouveauContact = prompt("Entrez le prénom du nouveau contact :");
-        var nouveauContact = Object.create(Contact);
-        nouveauContact.init(nomNouveauContact, prenomNouveauContact);
-        contacts.push(nouveauContact);
-        console.log("Le nouveau contact a été ajouté");
-    } else { // Gestion d'entrée non valide
-        console.log("Entrée erronnée. Veuillez entrer une option valable : \n \n");
+        ajouterContact();
+    } else { // Gestion d'entrée non valide dans le menu principal
+        console.log("Entrée erronnée. Veuillez entrer une option valide : \n");
     }
     console.log("\n");
     var choixUtilisateur = initChoix();
