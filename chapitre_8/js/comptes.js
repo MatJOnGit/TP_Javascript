@@ -12,11 +12,11 @@ var Compte = {
     // Crédite le compte et retourne le solde
     crediter: function (montantACrediter) {
         this.solde = this.solde + montantACrediter;
+    },
+    // Affiche une description du compte
+    decrire: function () {
+        return "Titulaire : " + this.titulaire + ", solde : " + this.solde + " euros";
     }
-};
-// Affiche une description du compte
-Compte.decrire = function () {
-    console.log("Titulaire : " + this.titulaire + ", solde : " + this.solde + " euros");
 };
 
 
@@ -34,7 +34,7 @@ CompteEpargne.initCE = function (titulaire, solde, interets) {
     this.interets = interets;
 };
 // Calcule le solde après ajout des intérêts
-CompteEpargne.ajouterInterets = function (interets) {
+CompteEpargne.ajouterInterets = function () {
     this.solde = this.solde * (1 + this.interets);
 };
 
